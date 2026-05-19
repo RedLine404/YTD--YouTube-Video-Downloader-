@@ -1,0 +1,6 @@
+customtkinter
+flet
+pillow
+pytubefix
+requests
+yt-dlp
