@@ -10,7 +10,15 @@ from PIL import Image
 from io import BytesIO
 from backend import DownloaderBackend
 
-# Fix for Windows Taskbar Icon - tells Windows this is a distinct app, not just "python.exe"
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
 if sys.platform == "win32":
     try:
         myappid = 'mycustom.youtubedownloader.app.1.0'
@@ -37,10 +45,10 @@ class DownloaderApp(ctk.CTk):
         self.geometry(f"{window_width}x{window_height}+{x_pos}+{y_pos}")
         
         try:
-            self.iconbitmap("icon.ico") # here
+            self.iconbitmap(resource_path("icon.ico")) # here
         except Exception:
-            pass 
-        
+            pass
+
         self.cancel_event = threading.Event()
         self.last_download_path = ""
         

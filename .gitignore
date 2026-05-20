@@ -16,3 +16,6 @@ icon.ico
 /build
 /dist
 /Downloaded videos YTD
+YTD.spec
+main.spec
+.gitignore
